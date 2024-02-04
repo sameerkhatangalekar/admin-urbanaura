@@ -41,11 +41,11 @@ const Login = () => {
                         <label htmlFor="Password">Password</label>
                         <input type="password" placeholder="Password" name="password" value={formik.values.password} onChange={formik.handleChange} onBlur={formik.handleBlur} className="min-w-[40%] w-full  py-2 border border-gray-900 focus:border-teal-500 focus:ring-teal-500 outline-none bg-white bg-opacity-20 text-white rounded-sm px-4" />
                         {formik.touched.password && formik.errors.password && <span className="text-red-500">{formik.errors.password}</span>}
-                        <Link replace to={'/forgot'} >
+                        {/* <Link replace to={'/forgot'} >
                             <span className="my-2 text-xs underline cursor-pointer">
                                 FORGOT PASSWORD?
                             </span>
-                        </Link>
+                        </Link> */}
                         <button type="submit" className="bg-teal-700 text-white py-3 px-5 mt-5 select-none outline-none" disabled={user.isFetching}>{user.isFetching ? <Triangle
                             visible={true}
                             height="20"
