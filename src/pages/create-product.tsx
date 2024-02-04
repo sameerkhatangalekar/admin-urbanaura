@@ -24,7 +24,6 @@ const CreateProduct = () => {
         'XL'
     ];
     const [isFetchingCategories, setCategoriesFetching] = useState(false);
-    const [fetchCategoriesError, setFetchCategoriesError] = useState(false);
     const [categories, setCategories] = useState<CategoryProps[]>([]);
     const [progressPercent, setProgressPercent] = useState(0);
     const [file, setFile] = useState<File | null>(null);
@@ -106,6 +105,7 @@ const CreateProduct = () => {
                             setProgressPercent(progress)
                         },
                         (error) => {
+                            console.log(error);
                             toast.error('Failed to upload Image');
                         },
                         () => {
@@ -137,7 +137,7 @@ const CreateProduct = () => {
         ; (async () => {
             try {
                 setCategoriesFetching(true);
-                setFetchCategoriesError(false);
+
                 const response = await privateRequestInstance.get(`/category/`, {
                     withCredentials: true,
                     signal: fetchCategoryCallController.signal
@@ -155,7 +155,7 @@ const CreateProduct = () => {
             } catch (error: unknown) {
                 if (axios.isCancel(error)) {
                     console.log('Request canceled', error.message)
-                    setFetchCategoriesError(false);
+
                     return;
                 }
                 if (axios.isAxiosError(error)) {
@@ -171,7 +171,7 @@ const CreateProduct = () => {
                 }
 
 
-                setFetchCategoriesError(true)
+
             }
             finally {
                 setCategoriesFetching(false);
